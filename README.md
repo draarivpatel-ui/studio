@@ -8,7 +8,7 @@ specs, review every change and test every page before it ships. The judgement,
 standards and final calls are mine.
 
 - Portfolio: https://aariv.me
-- Case studies: run `node build.mjs` and open `dist/index.html` (no dependencies)
+- Case studies: https://aariv.me/studio-site/ (built by `node build.mjs`, no dependencies)
 
 ## Shipped sites
 
