@@ -20,12 +20,44 @@
       "kind": "charity website (free build)",
       "what": "Free-food pantry in Houston, TX: hours, location, what to expect on a first visit. Plain language and large type, because visitors are often in a hurry or stressed.",
       "screenshot": "screenshots/food-pantry.png"
+    },
+    {
+      "slug": "doris-darlings",
+      "name": "Dori's Darlings",
+      "url": "https://doris-darlings.netlify.app/",
+      "kind": "charity website (free build)",
+      "what": "No-kill cat rescue in Houston, TX: adoptable cats, foster program and donate flow. Designed around big friendly photography and a sticky donate path, since rescue sites live or die on donations.",
+      "screenshot": "screenshots/doris-darlings.png"
+    },
+    {
+      "slug": "good-mews-for-ferals",
+      "name": "Good Mews for Ferals",
+      "url": "https://good-mews-for-ferals.netlify.app/",
+      "kind": "charity website (free build)",
+      "what": "Houston community-cat rescue (trap, neuter, return): explains TNR in plain language with a step-by-step for first-time colony caretakers. Information-first design; the audience needs answers, not animations.",
+      "screenshot": "screenshots/good-mews-for-ferals.png"
     }
   ],
   "tools": [
-    { "name": "Regatta", "repo": "https://github.com/draarivpatel-ui/regatta", "what": "macOS app for running several AI coding agents at once, with repo-safety rails" },
-    { "name": "wasitme", "repo": "https://github.com/draarivpatel-ui/wasitme", "what": "'Was it me, or the model?' - timeline of what changed in your Claude Code / Codex sessions" },
-    { "name": "armillary", "repo": "https://github.com/draarivpatel-ui/armillary", "what": "Mac app that archives every AI coding agent's session history privately" },
-    { "name": "busyholm", "repo": "https://github.com/draarivpatel-ui/busyholm", "what": "A papercraft river island on the screen edge that grows from real agent activity" }
+    {
+      "name": "Regatta",
+      "repo": "https://github.com/draarivpatel-ui/regatta",
+      "what": "macOS app for running several AI coding agents at once, with repo-safety rails"
+    },
+    {
+      "name": "wasitme",
+      "repo": "https://github.com/draarivpatel-ui/wasitme",
+      "what": "'Was it me, or the model?' - timeline of what changed in your Claude Code / Codex sessions"
+    },
+    {
+      "name": "armillary",
+      "repo": "https://github.com/draarivpatel-ui/armillary",
+      "what": "Mac app that archives every AI coding agent's session history privately"
+    },
+    {
+      "name": "busyholm",
+      "repo": "https://github.com/draarivpatel-ui/busyholm",
+      "what": "A papercraft river island on the screen edge that grows from real agent activity"
+    }
   ]
 }
