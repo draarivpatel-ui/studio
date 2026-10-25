@@ -1,12 +1,14 @@
 // Renders the studio case studies from sites.json into dist/.
 // Run: node build.mjs   (Node 18+, no dependencies)
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const data = JSON.parse(readFileSync(join(here, "sites.json"), "utf8"));
-mkdirSync(join(here, "dist"), { recursive: true });
+mkdirSync(join(here, "dist", "screenshots"), { recursive: true });
+// dist/ is self-contained: pages reference screenshots/... relative to the page.
+for (const s of data.sites) copyFileSync(join(here, s.screenshot), join(here, "dist", s.screenshot));
 
 const page = (title, body) => `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -14,8 +16,7 @@ const page = (title, body) => `<!doctype html>
 <body>${body}<p><a href="index.html">All case studies</a></p></body></html>`;
 
 const cards = data.sites.map(s => `<article><h2><a href="${s.slug}.html">${s.name}</a></h2>
-<p><em>${s.kind}</em></p><img src="../${s.screenshot}" alt="${s.name} screenshot" width="640"><p>${s.what}</p>
-<p><a href="${s.url}">Visit the live site</a></p></article>`).join("\n");
+<p><em>${s.kind}</em></p><img src="${s.screenshot}" alt="${s.name} screenshot" width="640"><p>${s.what}</p></article>`).join("\n");
 
 writeFileSync(join(here, "dist", "index.html"),
   page("Aariv's web studio - case studies",
@@ -24,6 +25,6 @@ writeFileSync(join(here, "dist", "index.html"),
 for (const s of data.sites) {
   writeFileSync(join(here, "dist", s.slug + ".html"),
     page(s.name, `<h1>${s.name}</h1><p><em>${s.kind}</em></p>
-<img src="../${s.screenshot}" alt="${s.name} screenshot"><p>${s.what}</p><p><a href="${s.url}">Visit the live site</a></p>`));
+<img src="${s.screenshot}" alt="${s.name} screenshot"><p>${s.what}</p>`));
 }
 console.log(`wrote ${data.sites.length + 1} pages to dist/`);

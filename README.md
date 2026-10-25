@@ -12,13 +12,13 @@ standards and final calls are mine.
 
 ## Shipped sites
 
-| Site | Kind | Live |
-|---|---|---|
-| The Sunshine Fund (Houston foster cat rescue) | charity, free build | https://the-sunshine-fund-houston.netlify.app/ |
-| East Spring Branch Food Pantry (Houston, TX) | charity, free build | https://east-spring-branch-food-pantry.netlify.app/ |
+| Site | Kind |
+|---|---|
+| A foster-based cat rescue | charity, free build |
+| A community food pantry | charity, free build |
 
 Each case study records what the site is for and the design decisions behind it,
-with a current screenshot from the live deployment.
+with a screenshot of the finished site (names and locations covered).
 
 ## Open-source tools from the studio
 
