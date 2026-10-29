@@ -39,7 +39,7 @@ function assert(condition, message) {
   }
 }
 
-console.log("=== Aariv's Web Studio — Static QA & Accessibility Audit ===");
+console.log("=== Aariv's Web Studio - Static QA & Accessibility Audit ===");
 
 // 1. Verify WCAG Contrast Ratios in sites.json
 console.log("\n1. Auditing WCAG 2.1 Color Token Contrast Ratios (sites.json):");
@@ -96,6 +96,18 @@ for (const file of htmlFiles) {
       const imgPath = join(distDir, srcMatch[1]);
       assert(existsSync(imgPath), `${file}: <img> src "${srcMatch[1]}" does not exist in dist/`);
     }
+  }
+
+  // Check every <button> has an explicit type attribute
+  const buttons = [...html.matchAll(/<button\b[^>]*>/gi)].map((m) => m[0]);
+  for (const btn of buttons) {
+    assert(/\btype="(button|submit|reset)"/i.test(btn), `${file}: <button> missing explicit type attribute: ${btn}`);
+  }
+
+  // Check every <input> has an id or aria-label
+  const inputs = [...html.matchAll(/<input\b[^>]*>/gi)].map((m) => m[0]);
+  for (const inp of inputs) {
+    assert(/\b(id|aria-label)="[^"]+"/i.test(inp), `${file}: <input> missing id or aria-label: ${inp}`);
   }
 
   // Check internal links resolve

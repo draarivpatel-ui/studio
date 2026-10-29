@@ -28,8 +28,8 @@
       "whatIBuilt": "I designed an editorial card layout that explains the 3-step foster-to-adopt loop right below the hero before showing the adoptable cat grid. Each cat card uses explicit width/height attributes to eliminate layout shift (CLS = 0.00) and badges medical/temperament tags ('Good with dogs', 'Bonded pair', 'FIV+') in plain text rather than tiny icons.",
       "whatWasTricky": "Volunteer coordinators needed to update cat availability without touching layout code, and foster photos come in every aspect ratio imaginable. I built a CSS aspect-ratio frame (`4 / 3` with `object-fit: cover` and focal-point utility classes) plus a clean JSON-to-HTML card partial so cropping never decapitates ear tips or distorts portraits.",
       "accessibilityNotes": [
-        "Every adoptable cat card uses a single composite link with an explicit `aria-label` ('Meet Mochi — 2-year-old tabby, good with other cats') instead of three redundant 'Learn More' buttons.",
-        "Warm cream canvas (`#FBF8F3`) paired with deep espresso ink (`#1F1A17`) hits 14.8:1 contrast—easy on the eyes without sterile pure-white glare.",
+        "Every adoptable cat card uses a single composite link with an explicit `aria-label` ('Meet Mochi - 2-year-old tabby, good with other cats') instead of three redundant 'Learn More' buttons.",
+        "Warm cream canvas (`#FBF8F3`) paired with deep espresso ink (`#1F1A17`) hits 14.8:1 contrast, easy on the eyes without sterile pure-white glare.",
         "Donation tier buttons work as native radio labels with full keyboard arrow navigation and 52px height on mobile."
       ],
       "typography": {
@@ -71,12 +71,12 @@
       "category": "food-access",
       "name": "A community food pantry",
       "kind": "Charity website · Free build · Zero-stigma emergency food access",
-      "summary": "Built for neighbors looking up distribution hours, bus routes, and eligibility rules—often on a prepaid phone with spotty data while standing outside or riding transit. Clarity, dignity, and large type come before everything else.",
+      "summary": "Built for neighbors looking up distribution hours, bus routes, and eligibility rules, often on a prepaid phone with spotty data while standing outside or riding transit. Clarity, dignity, and large type come before everything else.",
       "what": "Free-food pantry: hours, location, what to expect on a first visit. Plain language and large type, because visitors are often in a hurry or stressed.",
       "screenshot": "screenshots/food-pantry.png",
       "audience": "Neighbors seeking groceries for their household, plus community volunteers checking shift times and most-needed shelf-stable donations.",
       "problemStatement": "On too many food pantry sites, the distribution hours are trapped inside a scanned PDF flyer or buried below a 600-word mission statement for donors. If someone is stressed and trying to find out whether they need a photo ID or utility bill before the pantry closes at 6 PM, making them pinch-zoom a PDF is a design failure.",
-      "whatIBuilt": "I put the live weekly schedule, street address, transit directions, and a bold 'No ID or proof of income required—everyone is welcome' banner in the top 320 pixels of the viewport. Right underneath is a four-step 'What happens on your first visit' walkthrough written at a 6th-grade reading level so first-time visitors know where to park, that volunteers provide boxes, and that they get to choose their own groceries.",
+      "whatIBuilt": "I put the live weekly schedule, street address, transit directions, and a bold 'No ID or proof of income required, everyone is welcome' banner in the top 320 pixels of the viewport. Right underneath is a four-step 'What happens on your first visit' walkthrough written at a 6th-grade reading level so first-time visitors know where to park, that volunteers provide boxes, and that they get to choose their own groceries.",
       "whatWasTricky": "The pantry serves two completely different audiences: neighbors picking up food (who need hours and zero friction) and donors/volunteers (who need drop-off windows and a list of high-priority pantry staples like cooking oil and canned protein). I separated the two flows right in the top bar so donor fundraising appeals never get in the way of someone looking for food.",
       "accessibilityNotes": [
         "Base body font size is 18px with 1.65 line-height; schedule tables use `font-variant-numeric: tabular-nums` and never scroll horizontally at 320px.",
@@ -130,7 +130,7 @@
       "whatIBuilt": "I created a sticky header donate trigger paired with concrete 'What your gift covers' cost-breakdown cards ($25, $50, $120, $250) and a spotlight rail for senior and bonded-pair cats. The photography grid uses progressive responsive image sizing so full-bleed cat portraits look crisp on Retina displays while staying under a strict 16 KB HTML+CSS budget.",
       "whatWasTricky": "Sticky donate bars on phones can easily feel pushy or cover up content when someone is trying to read a cat's medical bio. I tuned the mobile bar to sit cleanly in the top header with a compact pill button (`min-height: 44px`) and built the cost-breakdown cards using pure CSS grid so nothing overlaps or janks during scroll.",
       "accessibilityNotes": [
-        "Every donation amount card exposes its full description to screen readers ('Donate $50 — covers initial bloodwork and FIV/FeLV test for one intake').",
+        "Every donation amount card exposes its full description to screen readers ('Donate $50 - covers initial bloodwork and FIV/FeLV test for one intake').",
         "No auto-playing carousels or background video: all cat spotlights sit in a keyboard-focusable static grid.",
         "Tested with macOS VoiceOver and Safari Reader mode to ensure every cat's age, spay/neuter status, and adoption fee reads in logical DOM order."
       ],
@@ -173,7 +173,7 @@
       "category": "field-guide",
       "name": "A community-cat (TNR) rescue",
       "kind": "Charity website · Free build · Field manual for colony caretakers",
-      "summary": "When someone finds a litter of outdoor cats behind their apartment or workplace, they don't want cute animations—they need to know whether the kittens are old enough to trap, how to borrow a humane box trap, and which clinic takes ear-tip appointments tomorrow morning.",
+      "summary": "When someone finds a litter of outdoor cats behind their apartment or workplace, they don't want cute animations, they need to know whether the kittens are old enough to trap, how to borrow a humane box trap, and which clinic takes ear-tip appointments tomorrow morning.",
       "what": "Community-cat rescue (trap, neuter, return): explains TNR in plain language with a step-by-step for first-time colony caretakers. Information-first design; the audience needs answers, not animations.",
       "screenshot": "screenshots/community-cat-rescue.png",
       "audience": "First-time neighborhood colony caretakers, property managers, and trap-loan volunteers working out in the field at dawn or dusk.",
@@ -181,7 +181,7 @@
       "whatIBuilt": "I structured the entire homepage like a rugged field manual: a numbered 5-step TNR timeline ('1. Assess & Count → 2. Book Clinic Spot → 3. Trap Loan & Bait → 4. Spay/Neuter + Ear Tip → 5. Recovery & Return'), a visual 'Found Kittens? Wait Before You Scoop' age decision tree, and a trap-loan request block that works on old browsers without a single line of client JS.",
       "whatWasTricky": "TNR instructions are dense, and long walls of text cause people to miss critical safety steps (like keeping traps indoors overnight after anesthesia so cats can regulate their body temperature). I used Swiss-grid callout boxes with high-contrast warning stripes (`Warning: Post-Op Temperature Rule`) and semantic `<details>` accordions so caretakers can scan the 5 steps in 15 seconds or expand the exact step they're standing in front of.",
       "accessibilityNotes": [
-        "Native HTML `<details>` and `<summary>` elements power the field-checklist expanders—100% keyboard and screen-reader accessible with 0 KB of JavaScript.",
+        "Native HTML `<details>` and `<summary>` elements power the field-checklist expanders, 100% keyboard and screen-reader accessible with 0 KB of JavaScript.",
         "Ear-tip identification diagram includes full prose alt text explaining the universal 3/8-inch straight left-ear tip.",
         "High-visibility slate and ochre field palette tested at 14.9:1 primary contrast for reading under streetlights or bright sun."
       ],

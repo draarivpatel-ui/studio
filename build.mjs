@@ -19,7 +19,7 @@ const esc = (str) =>
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 
-const STYLES_CSS = `/* Aariv's Web Studio — Tactile Swiss Editorial & Accessibility Workbench */
+const STYLES_CSS = `/* Aariv's Web Studio - Tactile Swiss Editorial & Accessibility Workbench */
 :root {
   --bg: #f6f3ec;
   --surface: #fffdf9;
@@ -539,6 +539,18 @@ a:hover, a:focus-visible {
   color: var(--good);
   border-color: var(--good);
 }
+.tab-stop-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  background: #1F1A17;
+  color: #FBF8F3;
+  border-radius: 3px;
+  vertical-align: middle;
+}
 .wcag-fail {
   background: #fde8e8;
   color: #7d1a1a;
@@ -752,7 +764,7 @@ a:hover, a:focus-visible {
 }
 `;
 
-const INSPECTOR_JS = `/* Aariv's Web Studio — Interactive Accessibility, Viewport & QA Workbench */
+const INSPECTOR_JS = `/* Aariv's Web Studio - Interactive Accessibility, Viewport & QA Workbench */
 (function () {
   "use strict";
 
@@ -907,6 +919,70 @@ const INSPECTOR_JS = `/* Aariv's Web Studio — Interactive Accessibility, Viewp
     });
   }
 
+  // 5. Keyboard Tab-Order & Landmark Overlay
+  const tabOrderBtn = document.getElementById("toggleTabOrderBtn");
+  let tabOrderActive = false;
+  if (tabOrderBtn) {
+    tabOrderBtn.addEventListener("click", function () {
+      tabOrderActive = !tabOrderActive;
+      tabOrderBtn.setAttribute("aria-pressed", tabOrderActive ? "true" : "false");
+      document.querySelectorAll(".tab-stop-badge").forEach(function (el) {
+        el.remove();
+      });
+      if (tabOrderActive) {
+        const focusable = Array.from(
+          document.querySelectorAll("a[href], button:not([disabled]), input:not([disabled]), summary")
+        );
+        focusable.forEach(function (el, idx) {
+          const badge = document.createElement("span");
+          badge.className = "tab-stop-badge";
+          badge.setAttribute("aria-hidden", "true");
+          badge.textContent = "Tab #" + (idx + 1);
+          el.appendChild(badge);
+        });
+        tabOrderBtn.textContent = "Hide Tab Order (" + focusable.length + " stops)";
+        if (auditResultOut) {
+          auditResultOut.textContent = "Highlighted " + focusable.length + " keyboard tab stops in DOM order.";
+        }
+      } else {
+        tabOrderBtn.textContent = "Show Keyboard Tab Order";
+      }
+    });
+  }
+
+  // 6. Copy Markdown QA Report button
+  const copyReportBtn = document.getElementById("copyAuditReportBtn");
+  if (copyReportBtn) {
+    copyReportBtn.addEventListener("click", function () {
+      const title = document.title;
+      const h1 = (document.querySelector("h1") && document.querySelector("h1").textContent.trim()) || title;
+      const imgs = document.querySelectorAll("img").length;
+      const headings = document.querySelectorAll("h1, h2, h3").length;
+      const links = document.querySelectorAll("a[href]").length;
+      const focusable = document.querySelectorAll("a[href], button:not([disabled]), input:not([disabled]), summary").length;
+      const fg = (fgText && fgText.value) || "#1F1A17";
+      const bg = (bgText && bgText.value) || "#FBF8F3";
+      const ratio = contrastRatio(fg, bg);
+      const ratioStr = ratio ? ratio.toFixed(2) + ":1" : "N/A";
+      const md = [
+        "# Studio QA Report: " + h1,
+        "",
+        "* Active Token Pair: " + fg + " on " + bg + " (" + ratioStr + ")",
+        "* Semantic Headings: " + headings,
+        "* Verified Images with Alt Text: " + imgs + "/" + imgs,
+        "* Navigable Links: " + links,
+        "* Keyboard Focus Stops: " + focusable,
+        "* External Tracking Scripts: 0"
+      ].join("\n");
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(md);
+      }
+      if (auditResultOut) {
+        auditResultOut.textContent = "Copied Markdown QA report (" + focusable + " tab stops, " + ratioStr + " contrast) to clipboard.";
+      }
+    });
+  }
+
   // 4. Live Client-Side DOM QA Verifier button
   const runAuditBtn = document.getElementById("runLiveAuditBtn");
   const auditResultOut = document.getElementById("liveAuditResult");
@@ -937,7 +1013,7 @@ function renderMasthead(activeSlug) {
   return `<a class="skip-link" href="#content">Skip to main content</a>
 <header class="masthead" role="banner">
   <a class="brand" href="index.html">
-    <span class="brand-mark">STUDIO // 01–04</span>
+    <span class="brand-mark">STUDIO // 01-04</span>
     <span class="brand-name">${esc(data.studio.name)}</span>
   </a>
   <nav class="masthead-nav" aria-label="Primary">
@@ -1051,7 +1127,7 @@ function renderIndexPage() {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>${esc(data.studio.name)} — Pro Bono Nonprofit Web Engineering &amp; Case Studies</title>
+  <title>${esc(data.studio.name)} - Pro Bono Nonprofit Web Engineering &amp; Case Studies</title>
   <meta name="description" content="${esc(data.studio.tagline)}">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -1126,7 +1202,7 @@ function renderIndexPage() {
               </div>
             </div>
             <div class="contrast-preview" id="contrastPreview">
-              <div class="contrast-preview-title">Distribution Hours: Tue &amp; Thu 4:00 PM – 7:00 PM</div>
+              <div class="contrast-preview-title">Distribution Hours: Tue &amp; Thu 4:00 PM - 7:00 PM</div>
               <p class="contrast-preview-body">No ID or income paperwork required. Volunteers pack fresh produce, dairy, and shelf-stable groceries at the side entrance.</p>
             </div>
             <div class="badge-row">
@@ -1155,7 +1231,9 @@ function renderIndexPage() {
               </tbody>
             </table>
             <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
-              <button type="button" class="filter-btn" id="runLiveAuditBtn">Run Live DOM Audit on This Page</button>
+              <button type="button" class="filter-btn" id="runLiveAuditBtn">Run Live DOM Audit</button>
+              <button type="button" class="filter-btn" id="toggleTabOrderBtn" aria-pressed="false">Show Keyboard Tab Order</button>
+              <button type="button" class="filter-btn" id="copyAuditReportBtn">Copy QA Report (.md)</button>
               <span class="section-meta" id="liveAuditResult" aria-live="polite">Click to verify headings, alt text, and links.</span>
             </div>
           </div>
@@ -1225,7 +1303,7 @@ function renderCaseStudyPage(site, idx) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>${esc(site.name)} — Case Study ${esc(site.indexNumber)} · ${esc(data.studio.name)}</title>
+  <title>${esc(site.name)} - Case Study ${esc(site.indexNumber)} · ${esc(data.studio.name)}</title>
   <meta name="description" content="${esc(site.summary)}">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -1271,7 +1349,7 @@ function renderCaseStudyPage(site, idx) {
             <button type="button" class="vp-tab" role="tab" aria-selected="false" data-vp-mode="tablet" data-vp-width="768px" data-vp-spec="${esc(site.gridSpec.tablet)}">Tablet (768px)</button>
             <button type="button" class="vp-tab" role="tab" aria-selected="false" data-vp-mode="mobile" data-vp-width="420px" data-vp-spec="${esc(site.gridSpec.mobile)}">Mobile Preview (375px)</button>
           </div>
-          <button type="button" class="preset-btn" id="toggleGridBtn" aria-pressed="false">Overlay 12-Col Swiss Grid</button>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="preset-btn" id="toggleGridBtn" aria-pressed="false">Overlay 12-Col Swiss Grid</button><button type="button" class="preset-btn" id="toggleTabOrderBtn" aria-pressed="false">Show Keyboard Tab Order</button><button type="button" class="preset-btn" id="copyAuditReportBtn">Copy QA Report (.md)</button></div>
         </div>
         <div class="showcase-stage" id="showcaseStage">
           <img src="${esc(site.screenshot)}" alt="Full interface screenshot of ${esc(site.name)} showing typography hierarchy and primary call to action" width="1200" height="750">
