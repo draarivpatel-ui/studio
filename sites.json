@@ -3,7 +3,6 @@
     "name": "Aariv's Web Studio",
     "tagline": "Fast, accessible, zero-dependency static websites built pro bono for local animal rescues and food pantries.",
     "intro": "I'm Aariv, a high-school freshman. I started this small studio after noticing that local volunteer-run charities either had broken WordPress themes from 2014 or slow page-builder sites that buried basic answers like 'When is the pantry open?' or 'How do I foster a cat?' beneath 4 MB of JavaScript. Every site here is built for free, ships as hand-crafted static HTML & CSS with zero runtime dependencies, passes strict WCAG AA/AAA contrast checks, and loads in under half a second on a budget phone.",
-    "portfolio": "https://aariv.me",
     "liveUrl": "https://aariv.me/studio-site/",
     "sourceRepo": "https://github.com/draarivpatel-ui/studio",
     "standards": [

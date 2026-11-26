@@ -1022,7 +1022,6 @@ function renderMasthead(activeSlug) {
     <a href="food-pantry.html"${activeSlug === "food-pantry" ? ' aria-current="page"' : ""}>02 Food Pantry</a>
     <a href="cat-rescue.html"${activeSlug === "cat-rescue" ? ' aria-current="page"' : ""}>03 No-Kill Rescue</a>
     <a href="community-cat-rescue.html"${activeSlug === "community-cat-rescue" ? ' aria-current="page"' : ""}>04 TNR Field Guide</a>
-    <a href="${esc(data.studio.portfolio)}">aariv.me ↗</a>
   </nav>
 </header>`;
 }
@@ -1033,7 +1032,6 @@ function renderFooter() {
     <strong>${esc(data.studio.name)}</strong> · Built from <code>sites.json</code> via zero-dependency <code>node build.mjs</code> &amp; verified by <code>node qa-audit.mjs</code>.
   </div>
   <div>
-    <a href="${esc(data.studio.portfolio)}">Portfolio (aariv.me)</a> ·
     <a href="${esc(data.studio.sourceRepo)}">Source Repository (GitHub)</a> ·
     <span>MIT License</span>
   </div>

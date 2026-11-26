@@ -4,7 +4,6 @@ I'm Aariv, a high-school freshman, and this repository is the static site genera
 
 - **Live Case Studies & Interactive Workbench:** [https://aariv.me/studio-site/](https://aariv.me/studio-site/)
 - **Deployed Pages Repo:** [`draarivpatel-ui/studio-site`](https://github.com/draarivpatel-ui/studio-site)
-- **Portfolio:** [https://aariv.me](https://aariv.me)
 
 ---
 
